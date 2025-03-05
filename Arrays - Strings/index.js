@@ -237,25 +237,22 @@
 // };
 //
 // console.log(containsDuplicate([1, 2, 3, 1]))
-//
-//
-//
-//
 
 
+function groupAnagrams(strs) {
+  let result = {}
+  let sorted = strs.map(str => str.split("").sort().join(""))
+
+  for (let i = 0; i < sorted.length; i++) {
+    if (!result[sorted[i]]) {
+      result[sorted[i]] = [strs[i]]
+    } else result[sorted[i]].push(strs[i])
+  }
+  return Object.values(result)
+};
 
 
-
-
-
-
-
-
-
-
-
-
-
+console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
 
 
 

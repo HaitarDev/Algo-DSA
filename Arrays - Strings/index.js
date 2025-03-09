@@ -239,20 +239,79 @@
 // console.log(containsDuplicate([1, 2, 3, 1]))
 
 
-function groupAnagrams(strs) {
-  let result = {}
-  let sorted = strs.map(str => str.split("").sort().join(""))
+// function groupAnagrams(strs) {
+//   let result = {}
+//   let sorted = strs.map(str => str.split("").sort().join(""))
+//
+//   for (let i = 0; i < sorted.length; i++) {
+//     if (!result[sorted[i]]) {
+//       result[sorted[i]] = [strs[i]]
+//     } else result[sorted[i]].push(strs[i])
+//   }
+//   return Object.values(result)
+// };
+// console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
 
-  for (let i = 0; i < sorted.length; i++) {
-    if (!result[sorted[i]]) {
-      result[sorted[i]] = [strs[i]]
-    } else result[sorted[i]].push(strs[i])
+
+
+// function topKFrequent(nums, k) {
+//   let res = []
+//   let map = {}
+//   for (let i = 0; i < nums.length; i++) {
+//     map[nums[i]] = (map[nums[i]] || 0) + 1
+//   }
+//
+//   let keys = Object.entries(map).sort((a, b) => b[1] - a[1])
+//   console.log(keys)
+//   for (let i = 0; i < k; i++) {
+//     res.push(parseInt(keys[i][0]))
+//   }
+//   return res
+// };
+//
+// console.log(topKFrequent(
+//   [4, 1, -1, 2, -1, 2, 3]
+//   , 2))
+
+
+// 238. Product of Array Except Self
+function productExceptSelf(nums) {
+  let prefix = [1]
+  let prefix2 = [1]
+  let j = 0;
+  let res = []
+
+  for (let i = 0; i < nums.length - 1; i++) {
+    prefix.push(prefix[i] * nums[i])
   }
-  return Object.values(result)
-};
+
+  for (let i = nums.length - 1; i > 0; i--) {
+    prefix2.push(nums[i] * prefix2[j])
+    j++
+  }
+  prefix2.reverse()
+
+  for (let i = 0; i < nums.length; i++) {
+    res.push(prefix[i] * prefix2[i])
+  }
+
+  return res
+}
+console.log(productExceptSelf([-1, 1, 0, -3, 3]))
+//  0  1  2   3
+// [1, 1, 2, 6]
+// [1, 4, 12, 24 => reverse : [24, 12, 4, 1]
+// [24,12, 8, 6]
 
 
-console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+
+
+
+
+
+
+
+
 
 
 
